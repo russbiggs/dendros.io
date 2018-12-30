@@ -10,8 +10,14 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "d3-scale": "^2.1.2",
+    "d3-selection": "^1.3.2",
+    "d3-time-format": "^2.1.3",
+    "d3-transition": "^1.1.3",
+    "d3-zoom": "^1.7.3",
+    "feather-icons": "^4.10.0",
     "idb-keyval": "^3.1.0",
-    "rwl": "^1.0.0"
+    "rwl": "^1.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

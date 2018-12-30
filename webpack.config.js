@@ -22,7 +22,6 @@ module.exports = {
   plugins: [new MinifyPlugin()],
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: './dist/bundle.js'
   }
 };
