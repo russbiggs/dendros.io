@@ -5,11 +5,11 @@ class Header {
     this.species = document.querySelector('.header__species')
     this.dateRange = document.querySelector('.header__date-range');
 
-    this.update = this.update.bind(this)
+    this.update = this.update.bind(this);
   }
 
   update(data) {
-    const { siteName = '', siteId = '', leadInvestigator = '', species = '', speciesCode = '', firstYear = '', lastYear = '' } = data.metadata;
+    const { siteName = '', siteId = '', leadInvestigator = '', species = '', speciesCode = '', firstYear = '', lastYear = '', location = {} } = data.metadata;
     this.siteName.innerHTML = `${siteName} (${siteId})`;
     this.collector.innerHTML = leadInvestigator;
     this.species.innerHTML = `${species} (${speciesCode})`;

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin="" />
   <link rel="stylesheet" href="style.css">
   <title>dendros</title>
 </head>
@@ -17,12 +19,19 @@
     <div class="header__collector" title="principal investigator"></div>
     <div class="header__species" title="species (species code)"></div>
     <div class="header__date-range" title="series start date - end data"></div>
+    <div class="header__location"><i data-feather="map-pin"></i></div>
     <button class="btn btn-upload js-btn-upload" title="load file"><i data-feather="file-plus"></i></div>
   </header>
   <div class="container">
     <div class="container__content">
-      <div class="core-chart"></div>
-      <div class="time-series"></div>
+      <div class="core-chart">
+        <svg>
+          <g></g>
+        </svg>
+      </div>
+      <div class="time-series">
+        <svg></svg>
+      </div>
       <div class="links">
         <a href="https://github.com/russbiggs/dendros" class="github-link"><i data-feather="github"></i></a>
         <i data-feather="info"></i>
@@ -34,8 +43,10 @@
       </ul>
     </div>
   </div>
+  <div class="core-tooltip"></div>
   <div class="js-modal modal">
     <div class="js-modal__body modal__body">
+      <div id="map"></div>
       <button class="js-modal-close-btn modal-close-btn"><i data-feather="x-circle"></i>
       </button>
       <h3 class="modal-title"></h3>
@@ -50,8 +61,10 @@
 
   </div>
   <script src="./dist/bundle.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <script defer src="./dist/icons.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace();
+  </script>
 </body>
 
 </html>

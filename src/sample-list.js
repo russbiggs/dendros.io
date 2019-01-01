@@ -1,5 +1,3 @@
-import { get } from 'idb-keyval';
-
 class SampleList {
   constructor(observer) {
     this.observer = observer;
@@ -9,7 +7,7 @@ class SampleList {
   }
 
   update(data) {
-    this.sampleTitle.innerHTML = `${data.metadata.siteId || ''} samples`
+    this.sampleTitle.innerHTML = `${data.metadata.siteId || ''} samples`;
     const samples = data.samples || [];
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
@@ -19,10 +17,7 @@ class SampleList {
       const elem = document.createElement('li');
       elem.classList.add('sample-list__item');
       elem.innerHTML = sample.sampleId;
-      elem.addEventListener('click', () => {
-        console.log(sample)
-        this.observer.notify(sample.measurements);
-      })
+      elem.addEventListener('click', () => this.observer.notify(sample.measurements));
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
