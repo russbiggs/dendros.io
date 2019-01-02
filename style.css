@@ -113,7 +113,12 @@ body, html {
 }
 
 .axis {
-  stroke: #000;
+  stroke: #777;
+  stroke-width: 2px;
+}
+
+.tick {
+  stroke: #777;
   stroke-width: 1px;
 }
 

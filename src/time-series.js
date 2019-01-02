@@ -34,9 +34,6 @@ class TimeSeries {
     this.g.appendChild(frag)
   }
 
-
-
-
   drawLine() {
     const xRange = [50, 950];
     const yRange = [0, 250];
@@ -46,11 +43,11 @@ class TimeSeries {
     const minMax = minWidth + maxWidth;
     const measurementsLength = measurements.length
     const xMove = (xRange[1] - xRange[0]) / measurementsLength;
-    const yStart = (yRange[1] - yRange[0]) / measurements.shift();
+    const yStart = 250 - ((yRange[1] - yRange[0]) / measurements.shift());
     let pathD = `M0,${yStart}`;
     for (let i = 1; i < measurementsLength - 1; i++) {
       const x = xMove * i;
-      const y = 240 * (measurements[i] / minMax);
+      const y = 250 - (240 * (measurements[i] / minMax));
       const lineTo = `L${x},${y}`;
       pathD += lineTo;
     }
@@ -78,12 +75,20 @@ class TimeSeries {
     const frag = document.createDocumentFragment();
     for (const data of labelSet) {
       const { year = '', idx = 0 } = data;
+      const x = idx * xMove
       const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       label.classList.add('time-series__label')
-      label.setAttribute('x', idx * xMove)
+      label.setAttribute('x', x - 18)
       label.setAttribute('y', 275);
       label.innerHTML = year;
       frag.appendChild(label);
+      const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      tick.classList.add('tick');
+      tick.setAttribute('x1', x);
+      tick.setAttribute('y1', '250');
+      tick.setAttribute('x2', x);
+      tick.setAttribute('y2', '260');
+      frag.appendChild(tick);
     }
     this.g.appendChild(frag);
   }
@@ -126,53 +131,3 @@ class TimeSeries {
 }
 
 export default TimeSeries;
-/*
-function drawSeries(data, index) {
-  var parseTime = d3.timeParse("%Y");
-  var series = data.samples[index].measurements
-  series.pop();
-  var widths = [];
-  for (var i = 0; i < series.length; i++) {
-    widths.push(series[i].width);
-  }
-  var seriesWidthMax = Math.max.apply(null, widths)
-  var x = d3.scaleTime()
-    .rangeRound([0, width - 150]);
-  var y = d3.scaleLinear()
-    .rangeRound([250, 0]);
-  var factor = seriesWidthMax / 250;
-  var firstYear = parseInt(series[0].year);
-  var lastYear = parseInt(series.slice(-1)[0].year);
-  var yearRange = [];
-  for (var i = 0; i <= (lastYear - firstYear); i++) {
-    yearRange.push(parseTime(firstYear + i));
-  }
-  x.domain(d3.extent(yearRange));
-  y.domain(d3.extent([0, 2000]));
-  g2.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + 250 + ")")
-    .call(d3.axisBottom(x));
-  g2.append("g")
-    .attr("class", "axis axis--y")
-    .call(d3.axisLeft(y))
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", "0.71em")
-    .attr("fill", "#000")
-  drawLine(series);
-  function drawLine(series) {
-    var line = d3.line()
-      .x(function (d) {
-        return x(parseTime(d.year));
-      })
-      .y(function (d) {
-        return y(d.width / factor * 8);
-      });
-    g2.append("path")
-      .datum(series)
-      .attr("class", "series-line")
-      .attr("d", line)
-  }
-  */
