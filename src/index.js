@@ -21,6 +21,7 @@ import Uploader from "./uploader";
   const siteObserver = new Observable();
   siteObserver.subscribe(header.update);
   siteObserver.subscribe(sampleList.update);
+  timeSeries.init();
 
   keys(dataStore).then((keys) => {
     if (keys.length > 0) {
