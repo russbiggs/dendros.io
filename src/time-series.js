@@ -33,7 +33,7 @@ class TimeSeries {
     this.g.appendChild(frag)
   }
 
-  drawLine() {
+  drawLine(diff) {
     const xRange = [20, 920];
     const yRange = [0, 250];
     const measurements = this.measurements.map((obj) => obj.width);
@@ -50,7 +50,18 @@ class TimeSeries {
       const lineTo = `L${x},${y}`;
       pathD += lineTo;
     }
+    if (diff < 0) {
+      const elems = this.pathD.split('L');
+      const cut = elems.slice(0, diff);
+      this.pathD = cut.join('L');
+    } else if (diff > 0 && this.pathD) {
+      const elems = this.pathD.split('L');
+      const filler = Array(diff).fill(elems.slice(-1))
+      const filled = elems.concat(filler);
+      this.pathD = filled.join('L');
+    }
     this.animate.setAttribute('from', this.pathD || 'M0,250L0,250L900,250');
+
     this.animate.setAttribute('to', pathD);
     this.animate.beginElement()
     this.pathD = pathD;
@@ -119,9 +130,12 @@ class TimeSeries {
   update(measurements) {
     const measurementsArr = measurements.slice(0);
     measurementsArr.pop();
-    console.log(measurementsArr[0])
+    let diff = 0;
+    if (this.measurements.length != measurementsArr.length) {
+      diff = measurementsArr.length - this.measurements.length;
+    }
     this.measurements = measurementsArr;
-    this.drawLine();
+    this.drawLine(diff);
     const labels = document.querySelectorAll('.time-series__label');
     for (const label of labels) {
       this.g.removeChild(label);
