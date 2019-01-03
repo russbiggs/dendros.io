@@ -1,12 +1,14 @@
 
+import { get, keys, set } from 'idb-keyval';
 import rwl from 'rwl';
-import { keys, set } from 'idb-keyval';
+
 
 class Uploader {
-  constructor(dataStore, observer, data) {
+  constructor(dataStore, observer, siteList, data) {
     this.timeout;
     this.dataStore = dataStore;
     this.observer = observer;
+    this.siteList = siteList;
     this.data = data;
     this.form = document.querySelector('.js-upload-form');
     this.statusElem = document.querySelector('.js-upload-form__status')
@@ -18,7 +20,6 @@ class Uploader {
   addEventListeners() {
     this.form.addEventListener('submit', this.formSubmit)
   }
-
 
   formSubmit(e) {
     clearTimeout(this.timeout);
@@ -47,14 +48,23 @@ class Uploader {
           this.observer.notify(rwlJSON);
           this.data = true;
         }
-      })
-
+        keys(this.dataStore).then((keys) => {
+          if (keys.length > 0) {
+            const promises = [];
+            for (const key of keys) {
+              const site = get(key, this.dataStore);
+              promises.push(site);
+            }
+            Promise.all(promises).then((sites) => {
+              this.siteList.update(sites);
+            });
+          }
+        });
+      });
     }
     reader.readAsText(file);
     return false;
-
   }
-
 }
 
 export default Uploader;

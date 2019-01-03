@@ -1,6 +1,7 @@
 class SiteList {
-  constructor(siteName, observer) {
-    this.observer = observer;
+  constructor(siteObserver, sampleObserver) {
+    this.siteObserver = siteObserver;
+    this.sampleObserver = sampleObserver;
     this.list = document.querySelector('.site-list');
     this.update = this.update.bind(this);
   }
@@ -14,13 +15,20 @@ class SiteList {
     for (const site of sites) {
       const elem = document.createElement('li');
       elem.classList.add('site-list__item');
-      elem.innerHTML = site.metadata.siteName;
+      elem.innerHTML = `${site.metadata.siteName} ${site.metadata.firstYear}-${site.metadata.lastYear}`;
       elem.addEventListener('click', () => {
-        this.observer.notify(site);
+        const previousActive = document.querySelector('.site-list__item--active');
+        previousActive.classList.remove('site-list__item--active');
+        elem.classList.add('site-list__item--active');
+        this.siteObserver.notify(site);
+        const sample = site.samples[0];
+        this.sampleObserver.notify(sample.measurements);
       })
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
+    document.querySelector('.site-list').firstChild.classList.add('site-list__item--active');
+
   }
 }
 

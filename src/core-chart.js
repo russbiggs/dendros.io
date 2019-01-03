@@ -20,7 +20,7 @@ class CoreChart {
     }
     var totalArray = this.measurements.map(obj => obj.width);
     var totalLength = totalArray.reduce((a, b) => a + b, 0);
-    const lengthRatio = 1000 / totalLength;
+    const lengthRatio = 900 / totalLength;
     const frag = document.createDocumentFragment();
     for (let i = 0; i < this.measurements.length; i++) {
       const { width = 0, year = 0 } = this.measurements[i];
@@ -85,7 +85,8 @@ class CoreChart {
   }
 
   update(measurements) {
-    this.measurements = measurements;
+    this.measurements = measurements.slice(0);
+    this.measurements.shift();
     this.drawCore();
     this.addLabels();
   }

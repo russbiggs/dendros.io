@@ -1,6 +1,7 @@
 class Observable {
   constructor() {
     this.observers = [];
+    this.data;
   }
 
   subscribe(observer) {
@@ -8,8 +9,11 @@ class Observable {
   }
 
   notify(data) {
-    for (const observer of this.observers) {
-      observer(data);
+    if (this.data !== data) {
+      this.data = data;
+      for (const observer of this.observers) {
+        observer(data);
+      }
     }
   }
 }

@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin="" />
   <link rel="stylesheet" href="style.css">
   <title>dendros</title>
 </head>
@@ -22,6 +20,15 @@
     <button class="btn btn-upload js-btn-upload" title="load file"><i data-feather="file-plus"></i></div>
   </header>
   <div class="container">
+    <div class="js-site-nav site-nav">
+      <nav class="js-site-nav-container site-nav__container">
+
+        <button class="js-btn-site-close btn-site-close"><i data-feather="x-circle"></i></button>
+        <h3 class="sitle-list-title">Saved Sites</h3>
+        <ul class="site-list">
+        </ul>
+      </nav>
+    </div>
     <div class="container__content">
       <div class="core-chart">
         <svg>

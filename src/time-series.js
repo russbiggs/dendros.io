@@ -14,20 +14,19 @@ class TimeSeries {
     this.update = this.update.bind(this);
   }
 
-
   drawChart() {
     const frag = document.createDocumentFragment();
     const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     yAxis.classList.add('axis')
-    yAxis.setAttribute('x1', '50');
+    yAxis.setAttribute('x1', '20');
     yAxis.setAttribute('y1', '0');
-    yAxis.setAttribute('x2', '50');
+    yAxis.setAttribute('x2', '20');
     yAxis.setAttribute('y2', '250');
     const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     xAxis.classList.add('axis')
-    xAxis.setAttribute('x1', '50');
+    xAxis.setAttribute('x1', '20');
     xAxis.setAttribute('y1', '250');
-    xAxis.setAttribute('x2', '950');
+    xAxis.setAttribute('x2', '920');
     xAxis.setAttribute('y2', '250');
     frag.appendChild(yAxis);
     frag.appendChild(xAxis);
@@ -35,17 +34,17 @@ class TimeSeries {
   }
 
   drawLine() {
-    const xRange = [50, 950];
+    const xRange = [20, 920];
     const yRange = [0, 250];
     const measurements = this.measurements.map((obj) => obj.width);
     const maxWidth = Math.max.apply(Math, measurements);
     const minWidth = Math.min.apply(Math, measurements);
     const minMax = minWidth + maxWidth;
-    const measurementsLength = measurements.length
+    const measurementsLength = measurements.length;
     const xMove = (xRange[1] - xRange[0]) / measurementsLength;
     const yStart = 250 - ((yRange[1] - yRange[0]) / measurements.shift());
     let pathD = `M0,${yStart}`;
-    for (let i = 1; i < measurementsLength - 1; i++) {
+    for (let i = 0; i < measurementsLength - 1; i++) {
       const x = xMove * i;
       const y = 250 - (240 * (measurements[i] / minMax));
       const lineTo = `L${x},${y}`;
@@ -59,7 +58,7 @@ class TimeSeries {
 
 
   addLabels() {
-    const xRange = [50, 950];
+    const xRange = [20, 920];
     const measurementsLength = this.measurements.length
     const xMove = (xRange[1] - xRange[0]) / measurementsLength;
     const yearArray = this.measurements.map(obj => obj.year);
@@ -75,7 +74,7 @@ class TimeSeries {
     const frag = document.createDocumentFragment();
     for (const data of labelSet) {
       const { year = '', idx = 0 } = data;
-      const x = idx * xMove
+      const x = idx * xMove + 20;
       const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       label.classList.add('time-series__label')
       label.setAttribute('x', x - 18)
@@ -113,13 +112,14 @@ class TimeSeries {
     path.id = 'series-line';
     this.g.appendChild(path);
     this.path = document.querySelector('.series-line');
-    this.path.setAttribute('transform', 'matrix(1 0 0 1 50 0)')
+    this.path.setAttribute('transform', 'matrix(1 0 0 1 20 0)')
     this.animate = document.querySelector('animate')
   }
 
   update(measurements) {
     const measurementsArr = measurements.slice(0);
     measurementsArr.pop();
+    console.log(measurementsArr[0])
     this.measurements = measurementsArr;
     this.drawLine();
     const labels = document.querySelectorAll('.time-series__label');

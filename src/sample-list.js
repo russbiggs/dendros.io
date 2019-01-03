@@ -1,6 +1,7 @@
 class SampleList {
   constructor(observer) {
     this.observer = observer;
+    this.data;
     this.sampleTitle = document.querySelector('.sample-title');
     this.list = document.querySelector('.sample-list');
     this.update = this.update.bind(this);
@@ -21,6 +22,7 @@ class SampleList {
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
+
   }
 }
 
