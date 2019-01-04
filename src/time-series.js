@@ -123,7 +123,7 @@ class TimeSeries {
     path.id = 'series-line';
     this.g.appendChild(path);
     this.path = document.querySelector('.series-line');
-    this.path.setAttribute('transform', 'matrix(1 0 0 1 20 0)')
+    this.path.setAttribute('transform', 'matrix(1 0 0 0.95 20 0)')
     this.animate = document.querySelector('animate')
   }
 
@@ -139,6 +139,10 @@ class TimeSeries {
     const labels = document.querySelectorAll('.time-series__label');
     for (const label of labels) {
       this.g.removeChild(label);
+    }
+    const ticks = document.querySelectorAll('.tick');
+    for (const tick of ticks) {
+      this.g.removeChild(tick);
     }
     this.addLabels();
   }
