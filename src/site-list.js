@@ -52,10 +52,12 @@ class SiteList {
         const previousActive = document.querySelector('.site-list__item--active');
         previousActive.classList.remove('site-list__item--active');
         elem.classList.add('site-list__item--active');
-        this.siteObserver.notify(site);
-        const sample = site.samples[0];
-        console.log(sample.measurements);
-        this.sampleObserver.notify(sample.measurements);
+        const same = this.siteObserver.notify(site);
+        if (!same) {
+          const sample = site.samples[0];
+          this.sampleObserver.notify(sample.measurements);
+        }
+
       })
       frag.appendChild(elem);
     }

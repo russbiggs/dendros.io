@@ -20,11 +20,16 @@ class SampleList {
       const elem = document.createElement('li');
       elem.classList.add('sample-list__item');
       elem.innerHTML = sample.sampleId;
-      elem.addEventListener('click', () => this.observer.notify(sample.measurements));
+      elem.addEventListener('click', () => {
+        const active = document.querySelector('.sample-list__item--active');
+        if (active) active.classList.remove('sample-list__item--active');
+        elem.classList.add('sample-list__item--active');
+        this.observer.notify(sample.measurements);
+      });
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
-
+    this.list.firstChild.classList.add('sample-list__item--active');
   }
 }
 

@@ -3,7 +3,6 @@
 
 class CoreChart {
   constructor() {
-    this.update = this.update.bind(this);
     this.measurements = [];
     this.g = document.querySelector('.core-chart > svg > g');
     this.tooltip = document.querySelector('.core-tooltip');
@@ -17,8 +16,8 @@ class CoreChart {
     while (this.g.lastChild) {
       this.g.removeChild(this.g.lastChild);
     }
-    var totalArray = this.measurements.map(obj => obj.width);
-    var totalLength = totalArray.reduce((a, b) => a + b, 0);
+    const totalArray = this.measurements.map(obj => obj.width);
+    const totalLength = totalArray.reduce((a, b) => a + b, 0);
     const lengthRatio = 900 / totalLength;
     const frag = document.createDocumentFragment();
     for (let i = 0; i < this.measurements.length; i++) {
@@ -52,8 +51,6 @@ class CoreChart {
       frag.appendChild(ring);
     }
     this.g.appendChild(frag)
-
-
   }
 
   addLabels() {
@@ -83,7 +80,6 @@ class CoreChart {
   }
 
   update(measurements) {
-    console.log(measurements)
     if (measurements.length == 0) {
       while (this.g.lastChild) {
         this.g.lastChild.remove();

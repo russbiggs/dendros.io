@@ -287,8 +287,17 @@ button:focus {
   background-color:#eee;
 }
 
+.sample-list__item--active {
+  background-color:#cdcdcd;
+}
+
 .sample-list__item:hover {
   background-color:#dedede;
+}
+
+
+.sample-list__item--active:hover {
+  background-color:#cdcdcd;
 }
 
 .modal {

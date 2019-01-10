@@ -40,7 +40,9 @@ import { get, keys, Store } from 'idb-keyval';
         promises.push(site);
       }
       Promise.all(promises).then((sites) => {
+        siteObserver.data = sites[0];
         siteList.update(sites);
+        sampleObserver.notify(sites[0].samples[0].measurements);
       });
     } else {
       new Uploader(dataStore, siteObserver, siteList, false);

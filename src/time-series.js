@@ -1,6 +1,5 @@
 class TimeSeries {
   constructor() {
-    this.update = this.update.bind(this);
     this.measurements = [];
     this.g = document.querySelector('.time-series > svg > g');
     this.path;

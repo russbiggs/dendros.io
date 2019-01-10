@@ -9,11 +9,14 @@ class Observable {
   }
 
   notify(data) {
-    if (this.data !== data) {
+    if (this.data != data) {
       this.data = data;
       for (const observer of this.observers) {
         observer(data);
       }
+      return false;
+    } else {
+      return true;
     }
   }
 }
