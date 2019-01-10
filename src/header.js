@@ -1,5 +1,5 @@
 class Header {
-  constructor(data) {
+  constructor() {
     this.siteName = document.querySelector('.header__site-name')
     this.collector = document.querySelector('.header__collector')
     this.species = document.querySelector('.header__species')
@@ -9,11 +9,14 @@ class Header {
   }
 
   update(data) {
-    const { siteName = '', siteId = '', leadInvestigator = '', species = '', speciesCode = '', firstYear = '', lastYear = '', location = {} } = data.metadata;
-    this.siteName.innerHTML = `${siteName} (${siteId})`;
-    this.collector.innerHTML = leadInvestigator;
-    this.species.innerHTML = `${species} (${speciesCode})`;
-    this.dateRange.innerHTML = `${firstYear}-${lastYear}`;
+    const metadata = data.metadata || {};
+    const { siteName = '', siteId = '', leadInvestigator = '', species = '', speciesCode = '', firstYear = '', lastYear = '', location = {} } = metadata;
+    if (metadata !== {}) {
+      this.siteName.innerHTML = `${siteName} (${siteId})`;
+      this.collector.innerHTML = leadInvestigator;
+      this.species.innerHTML = `${species} (${speciesCode})`;
+      this.dateRange.innerHTML = `${firstYear}-${lastYear}`;
+    }
   }
 }
 

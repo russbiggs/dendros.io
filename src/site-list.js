@@ -1,13 +1,44 @@
+import { del, keys } from 'idb-keyval';
+
 class SiteList {
-  constructor(siteObserver, sampleObserver) {
+  constructor(dataStore, siteObserver, sampleObserver) {
+    this.dataStore = dataStore;
     this.siteObserver = siteObserver;
     this.sampleObserver = sampleObserver;
     this.list = document.querySelector('.site-list');
+    this.deleteBtn = document.querySelector('.btn-delete-db');
     this.update = this.update.bind(this);
+
+    this.deleteData = this.deleteData.bind(this);
+
+    this.addEventListeners();
+  }
+
+
+  addEventListeners() {
+    this.deleteBtn.addEventListener('click', this.deleteData);
+  }
+
+  deleteData() {
+    keys(this.dataStore).then((keys) => {
+      const siteCount = keys.length;
+      const confirmDialog = confirm(`Are you sure you want to delete all ${siteCount} site(s) from your local DB`);
+      if (confirmDialog == true) {
+        const promises = [];
+        for (const key of keys) {
+          const site = del(key, this.dataStore);
+          promises.push(site);
+        }
+        Promise.all(promises).then(() => {
+          this.siteObserver.notify([]);
+          this.update();
+        });
+      }
+    });
   }
 
   update(data) {
-    const sites = data || {};
+    const sites = data || [];
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
     }

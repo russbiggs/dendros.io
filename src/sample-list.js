@@ -8,7 +8,9 @@ class SampleList {
   }
 
   update(data) {
-    this.sampleTitle.innerHTML = `${data.metadata.siteId || ''} samples`;
+    const metadata = data.metadata || {};
+    const siteId = metadata.siteId || '';
+    this.sampleTitle.innerHTML = `${siteId} samples`;
     const samples = data.samples || [];
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);

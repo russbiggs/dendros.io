@@ -29,7 +29,7 @@ import { get, keys, Store } from 'idb-keyval';
   siteObserver.subscribe(sampleList.update);
 
   timeSeries.init();
-  const siteList = new SiteList(siteObserver, sampleObserver);
+  const siteList = new SiteList(dataStore, siteObserver, sampleObserver);
   new SiteNav();
 
   keys(dataStore).then((keys) => {

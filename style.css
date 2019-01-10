@@ -71,6 +71,10 @@ button:focus {
 }
 
 
+.buttons {
+  display: inline;
+}
+
 .btn-site-close{
   cursor: pointer;
   position: relative;
@@ -79,6 +83,19 @@ button:focus {
   border: none;
   text-align:center;
   color:#444;
+  background-color:#fff;
+}
+
+.btn-delete-db{
+  cursor: pointer;
+  position: relative;
+  top:10px;
+  float:right;
+  width:50px;
+  border: none;
+  text-align:center;
+  color:#444;
+  background-color:#fff;
 }
 
 .site-nav {
@@ -144,7 +161,7 @@ button:focus {
 }
 
 
-.sitle-list-title {
+.site-list-title {
   margin:0 auto;
 }
 
@@ -331,7 +348,7 @@ button:focus {
   border: none;
   text-align:center;
   color:#444;
-
+  background-color:#FFF;
 }
 
 .modal-close-btn:focus {
