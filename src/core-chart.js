@@ -8,7 +8,6 @@ class CoreChart {
     this.g = document.querySelector('.core-chart > svg > g');
     this.tooltip = document.querySelector('.core-tooltip');
 
-
     this.drawCore = this.drawCore.bind(this);
     this.addLabels = this.addLabels.bind(this);
     this.update = this.update.bind(this);
@@ -57,7 +56,6 @@ class CoreChart {
 
   }
 
-
   addLabels() {
     const yearArray = this.measurements.map(obj => obj.year);
     const labelSet = yearArray.reduce((accumulator, currentValue) => {
@@ -85,10 +83,18 @@ class CoreChart {
   }
 
   update(measurements) {
-    this.measurements = measurements.slice(0);
-    this.measurements.shift();
-    this.drawCore();
-    this.addLabels();
+    console.log(measurements)
+    if (measurements.length == 0) {
+      while (this.g.lastChild) {
+        this.g.lastChild.remove();
+      }
+    } else {
+      this.measurements = measurements.slice(0);
+      this.measurements.shift();
+      this.drawCore();
+      this.addLabels();
+    }
+
   }
 
 }

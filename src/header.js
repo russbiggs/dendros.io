@@ -9,13 +9,17 @@ class Header {
   }
 
   update(data) {
+    if (this.siteName.firstChild) this.siteName.firstChild.remove()
+    if (this.collector.firstChild) this.collector.firstChild.remove()
+    if (this.species.firstChild) this.species.firstChild.remove()
+    if (this.dateRange.firstChild) this.dateRange.firstChild.remove()
     const metadata = data.metadata || {};
     const { siteName = '', siteId = '', leadInvestigator = '', species = '', speciesCode = '', firstYear = '', lastYear = '', location = {} } = metadata;
-    if (metadata !== {}) {
-      this.siteName.innerHTML = `${siteName} (${siteId})`;
-      this.collector.innerHTML = leadInvestigator;
-      this.species.innerHTML = `${species} (${speciesCode})`;
-      this.dateRange.innerHTML = `${firstYear}-${lastYear}`;
+    if (Object.keys(metadata).length > 0 && metadata.constructor === Object) {
+      this.siteName.appendChild(document.createTextNode(`${siteName} (${siteId})`));
+      this.collector.appendChild(document.createTextNode(leadInvestigator));
+      this.species.appendChild(document.createTextNode(`${species} (${speciesCode})`));
+      this.dateRange.appendChild(document.createTextNode(`${firstYear}-${lastYear}`));
     }
   }
 }

@@ -13,12 +13,21 @@ class Uploader {
     this.form = document.querySelector('.js-upload-form');
     this.statusElem = document.querySelector('.js-upload-form__status')
     this.formSubmit = this.formSubmit.bind(this);
+    this.update = this.update.bind(this);
 
     this.addEventListeners();
   }
 
   addEventListeners() {
     this.form.addEventListener('submit', this.formSubmit)
+  }
+
+  update(data) {
+    if (Object.keys(data).length > 0 && data.constructor === Object) {
+      this.data = true;
+    } else {
+      this.data = false;
+    }
   }
 
   formSubmit(e) {

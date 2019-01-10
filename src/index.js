@@ -10,8 +10,6 @@ import Uploader from "./uploader";
 
 import { get, keys, Store } from 'idb-keyval';
 
-
-
 {
   const dataStore = new Store('dendro-db', 'sites-store');
   const modal = new Modal();
@@ -27,8 +25,6 @@ import { get, keys, Store } from 'idb-keyval';
   const siteObserver = new Observable();
   siteObserver.subscribe(header.update);
   siteObserver.subscribe(sampleList.update);
-
-  timeSeries.init();
   const siteList = new SiteList(dataStore, siteObserver, sampleObserver);
   new SiteNav();
 

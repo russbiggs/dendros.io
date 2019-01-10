@@ -6,6 +6,7 @@ class TimeSeries {
     this.path;
     this.pathD;
     this.animate;
+    this.active = false;
 
     this.drawChart = this.drawChart.bind(this);
     this.drawLine = this.drawLine.bind(this);
@@ -128,23 +129,35 @@ class TimeSeries {
   }
 
   update(measurements) {
-    const measurementsArr = measurements.slice(0);
-    measurementsArr.pop();
-    let diff = 0;
-    if (this.measurements.length != measurementsArr.length) {
-      diff = measurementsArr.length - this.measurements.length;
+    if (!this.active) {
+      this.init();
+      this.active = true;
     }
-    this.measurements = measurementsArr;
-    this.drawLine(diff);
-    const labels = document.querySelectorAll('.time-series__label');
-    for (const label of labels) {
-      this.g.removeChild(label);
+    if (measurements.length == 0) {
+      this.active = false;
+      while (this.g.lastChild) {
+        this.g.lastChild.remove();
+      }
     }
-    const ticks = document.querySelectorAll('.tick');
-    for (const tick of ticks) {
-      this.g.removeChild(tick);
+    if (this.active) {
+      const measurementsArr = measurements.slice(0);
+      measurementsArr.pop();
+      let diff = 0;
+      if (this.measurements.length != measurementsArr.length) {
+        diff = measurementsArr.length - this.measurements.length;
+      }
+      this.measurements = measurementsArr;
+      this.drawLine(diff);
+      const labels = document.querySelectorAll('.time-series__label');
+      for (const label of labels) {
+        this.g.removeChild(label);
+      }
+      const ticks = document.querySelectorAll('.tick');
+      for (const tick of ticks) {
+        this.g.removeChild(tick);
+      }
+      this.addLabels();
     }
-    this.addLabels();
   }
 }
 

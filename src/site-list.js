@@ -30,7 +30,8 @@ class SiteList {
           promises.push(site);
         }
         Promise.all(promises).then(() => {
-          this.siteObserver.notify([]);
+          this.siteObserver.notify({});
+          this.sampleObserver.notify([]);
           this.update();
         });
       }
@@ -53,13 +54,16 @@ class SiteList {
         elem.classList.add('site-list__item--active');
         this.siteObserver.notify(site);
         const sample = site.samples[0];
+        console.log(sample.measurements);
         this.sampleObserver.notify(sample.measurements);
       })
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
-    document.querySelector('.site-list').firstChild.classList.add('site-list__item--active');
-
+    const siteList = document.querySelector('.site-list')
+    if (siteList.firstChild) {
+      siteList.firstChild.classList.add('site-list__item--active');
+    }
   }
 }
 
