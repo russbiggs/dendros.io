@@ -29,7 +29,10 @@ class SampleList {
       frag.appendChild(elem);
     }
     this.list.appendChild(frag);
-    this.list.firstChild.classList.add('sample-list__item--active');
+    if (this.list.firstChild) {
+      this.list.firstChild.classList.add('sample-list__item--active');
+    }
+
   }
 }
 

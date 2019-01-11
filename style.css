@@ -166,6 +166,7 @@ button:focus {
 }
 
 .site-list {
+  position: relative;
   list-style: none;
   padding:15px 0;
 }
@@ -180,6 +181,17 @@ button:focus {
 
 .site-list__item:hover {
   background-color:#ddd;
+}
+.site-delete-btn{
+  position: absolute;
+  top:20px;
+  right:10px;
+  display: inline;
+  visibility: hidden;
+}
+
+.site-list__item:hover .site-delete-btn{
+  visibility: visible;
 }
 
 .site-list__item--active{
