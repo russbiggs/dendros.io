@@ -52,7 +52,8 @@ class TimeSeries {
     }
     if (diff < 0) {
       const elems = this.pathD.split('L');
-      const cut = elems.slice(0, diff);
+      const cut = elems.slice(0, diff - 1);
+      cut.push(elems.slice(-1));
       this.pathD = cut.join('L');
     } else if (diff > 0 && this.pathD) {
       const elems = this.pathD.split('L');
