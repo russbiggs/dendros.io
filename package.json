@@ -1,14 +1,15 @@
 {
   "name": "dendros",
   "version": "0.0.1",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
     "start:dev": "webpack-dev-server"
   },
   "keywords": [],
-  "author": "",
-  "license": "Apache-2.0",
+  "author": "Russell Biggs",
+  "license": "MIT",
   "dependencies": {
     "feather-icons": "^4.10.0",
     "idb-keyval": "^3.1.0",

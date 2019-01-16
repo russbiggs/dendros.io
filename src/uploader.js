@@ -11,15 +11,21 @@ class Uploader {
     this.siteList = siteList;
     this.data = data;
     this.form = document.querySelector('.js-upload-form');
-    this.statusElem = document.querySelector('.js-upload-form__status')
+    this.fileAddBtn = document.querySelector('.js-upload-form__add');
+    this.fileInput = document.querySelector('.js-upload-form__file-input');
+    this.statusElem = document.querySelector('.js-upload-form__status');
     this.formSubmit = this.formSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.addFile = this.addFile.bind(this);
+    this.fileChange = this.fileChange.bind(this);
 
     this.addEventListeners();
   }
 
   addEventListeners() {
-    this.form.addEventListener('submit', this.formSubmit)
+    this.form.addEventListener('submit', this.formSubmit);
+    this.fileInput.addEventListener('change', this.fileChange);
+    this.fileAddBtn.addEventListener('click', this.addFile);
   }
 
   update(data) {
@@ -30,7 +36,16 @@ class Uploader {
     }
   }
 
+  addFile() {
+    this.fileInput.click();
+  }
+
+  fileChange() {
+    this.form.dispatchEvent(new Event('submit'));
+  }
+
   formSubmit(e) {
+    console.log("submit")
     clearTimeout(this.timeout);
     e.preventDefault();
     const file = document.querySelector('.js-upload-form__file-input').files[0];

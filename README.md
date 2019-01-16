@@ -1,3 +1,5 @@
+<img src="./img/logo.png" style="width:200px;">
+
 # δενδρος - [dendros.io](https://dendros.io)
 
 dendros is a web application for viewing .rwl tree ring width files in the browser. dendros is a tool to visually explore current or archived tree ring data in the Tucson rwl file format. The application uses browser storage to allow repeated use and storage of files. Files uploaded to the application are not shared with a server, all storage is client side only. 
