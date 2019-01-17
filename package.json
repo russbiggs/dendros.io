@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start:dev": "webpack-dev-server"
   },
   "keywords": [],

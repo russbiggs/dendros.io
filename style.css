@@ -131,6 +131,11 @@ input {
   transition: opacity 0.3s ease-in;
 }
 
+.site-nav__title {
+  width:100%;
+  text-align: center;
+}
+
 .site-nav__container {
   position: absolute;
   width: 90%;
@@ -148,31 +153,20 @@ input {
 .site-nav--visible::before {
   opacity: 0.7;
 }
-.site-nav--visible .site-nav__container {
 
+.site-nav--visible .site-nav__container {
   transform: none;
 }
 
-.site-nav__content {
-  text-align: center;
-  padding-top: 32px;
-  flex: 1;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-
 .site-list-title {
-  margin:0 auto;
+  margin: 0 auto;
 }
 
 .site-list {
   position: relative;
   list-style: none;
-  padding:15px 0;
+  margin: 0px;
+  padding: 15px 0px;
 }
 
 .site-list__item {
@@ -223,7 +217,6 @@ input {
   stroke-width: 1px;
 }
 
-
 .core-tooltip {
   position: absolute;
   text-align: center;
@@ -271,7 +264,7 @@ input {
 }
 
 .container__samples {
-  box-shadow: -1px 0px 3px #999;
+  box-shadow: 0px 0px 3px #999;
   flex-basis: 20%;
 }
 
@@ -335,7 +328,7 @@ input {
   height: 100%;
   opacity: 0;
   z-index: 1;
-  transition: opacity .3s ease-out;
+  transition: opacity 0.3s ease-out;
 }
 
 .modal--visible {
@@ -349,6 +342,7 @@ input {
 
 .modal__body {
   display: inherit;
+  align-items: center;
   flex-direction: column;
   position: absolute;
   background-color: #fff;
@@ -356,7 +350,7 @@ input {
   opacity: 0;
   z-index: 2;
   min-width: 400px;
-  min-height: 200px;
+  min-height: 150px;
   will-change: opacity;
   transition: opacity 0.3s ease-in-out;
 }
