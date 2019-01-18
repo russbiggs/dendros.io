@@ -264,7 +264,7 @@ input {
 }
 
 .container__samples {
-  box-shadow: 0px 0px 3px #999;
+  box-shadow: -1px 0px 2px #bbb;
   flex-basis: 20%;
 }
 
