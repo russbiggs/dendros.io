@@ -16,6 +16,7 @@ deploy:
   access_key_id: AKIAI65QIOITIAOWQQSQ
   secret_access_key:
     secure: bUi15s2MJ4llA/BGlQ9IWIbJ6CQfR2HAfiQWdhN2bCsE0X2wNyclgi6373mq7dCf6LRqPiOBm1wqILzD+co3DkQRw7KItnTxiLAst0xaI/abGqOmMoV6GXRTZCvh0BQxRs2302YV3lptVuolAxQK03AAqStHHKXTnWf2w/7msAlvz2yJg5YcrJVj8w4xPrec5sjKn+NcOWs0MQwwfy7Vtq3H0f+KtFQyux4RPIWW2MF2pEq22cgAz4W7GCUrGFpMuklmK/c7EymfXD8wrfPv6907NzTz8RyQLJiSx9YtRbeLYSGO+iBP9fxfHMmulrXN4hQDQ6/ngKLDn6+DJLCWfRgH5u1LKbcjZFGXODBOd+NNtqjZptoxU0jdkxsYKXviRUpSUpCH87Egd7R44k6rqM4lV/i89/VoH4ULUvzxUtF5tYBzd5d+iHsQ0hAznsAlMFUS51qwG6bBu4dylTQiklyO/dQJbUu+zxFv/Dkw6a9sA9kEcGFRIdbGOCE60/cwctccKA2Fwd4x98JfKNie+wTIAgXeYAGC/bv+3W6qH7RshEdXvsOaTeNwClCrIT35EPy+B3OSzp0jF1XROuRHZTvRagUjkcILEtFc5I/+W8OgiVnQPwts+IZifSoyj6EH93vwZNsJFy3edpF2ekWVdbFNU9QwUaG8LPN07kEiHU0=
+  region: "us-west-2"
   bucket: dendros.io
   local_dir: build
   skip_cleanup: true
