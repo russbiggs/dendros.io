@@ -1,4 +1,4 @@
-import { del, keys } from 'idb-keyval';
+import { del, get, keys } from 'idb-keyval';
 
 class SiteList {
   constructor(dataStore, siteObserver, sampleObserver) {
@@ -28,7 +28,7 @@ class SiteList {
         keys(this.dataStore).then((keys) => {
           if (keys.length > 0) {
             get(keys[0], this.dataStore).then((data) => {
-              siteObserver.notify(data);
+              this.siteObserver.notify(data);
             });
             const promises = [];
             for (const key of keys) {
@@ -36,9 +36,9 @@ class SiteList {
               promises.push(site);
             }
             Promise.all(promises).then((sites) => {
-              siteObserver.data = sites[0];
+              this.siteObserver.data = sites[0];
               this.update(sites);
-              sampleObserver.notify(sites[0].samples[0].measurements);
+              this.sampleObserver.notify(sites[0].samples[0].measurements);
             });
           } else {
             this.siteObserver.notify({});

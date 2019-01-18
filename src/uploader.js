@@ -45,7 +45,6 @@ class Uploader {
   }
 
   formSubmit(e) {
-    console.log("submit")
     clearTimeout(this.timeout);
     e.preventDefault();
     const file = document.querySelector('.js-upload-form__file-input').files[0];

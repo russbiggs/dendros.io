@@ -170,6 +170,7 @@ input {
 }
 
 .site-list__item {
+  display: flex;
   cursor: pointer;
   height: 36px;
   line-height: 36px;
@@ -180,11 +181,11 @@ input {
 .site-list__item:hover {
   background-color:#ddd;
 }
+
 .site-delete-btn{
-  position: absolute;
-  top:20px;
-  right:10px;
-  display: inline;
+  padding-right: 10px;
+  padding-top: 5px;
+  margin-left: auto;
   visibility: hidden;
 }
 
