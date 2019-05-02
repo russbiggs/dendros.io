@@ -14,7 +14,7 @@
   "dependencies": {
     "feather-icons": "^4.10.0",
     "idb-keyval": "^3.1.0",
-    "rwl": "^1.1.1"
+    "rwl": "^1.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
